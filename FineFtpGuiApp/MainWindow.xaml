@@ -1,0 +1,48 @@
+﻿<Window x:Class="FineFtpGuiApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FineFtpGuiApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel>
+        <DockPanel>
+            <Menu>
+                <MenuItem Header="ファイル(_F)">
+                    <MenuItem Header="設定を読み込む(_L)" Name="LoadSettingFileButton"/>
+                    <MenuItem Header="設定を保存する(_S)" Name="SaveSettingFileButton"/>
+                </MenuItem>
+                <!--<Separator/>-->
+                <MenuItem Header="ヘルプ(_H)">
+                    <MenuItem Header="バージョン情報(_A)" Name="AboutButton" Click="AboutButton_Click"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        
+        <Grid HorizontalAlignment="Stretch" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Content="通信開始" Margin="10" Padding="10" Grid.Row="0" Grid.Column="0" Click="StartButton_Click" Name="StartButton"/>
+            <Button Content="通信終了" Margin="10" Padding="10" Grid.Row="0" Grid.Column="1" Click="StopButton_Click" Name="StopButton"/>
+        </Grid>
+        
+        <Grid>
+            <DataGrid Name="connectionList" AutoGenerateColumns="False" CanUserSortColumns="False" CanUserReorderColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="IPアドレス" Binding="{Binding IPAddress}" Width="*"/>
+                    <DataGridTextColumn Header="ポート番号" Binding="{Binding Port}" Width="*"/>
+                    <DataGridTextColumn Header="ユーザー名" Binding="{Binding UserName}" Width="*"/>
+                    <DataGridTextColumn Header="パスワード" Binding="{Binding Password}" Width="*"/>
+                    <DataGridTextColumn Header="ディレクトリ" Binding="{Binding Directory}" Width="3*"/>
+                    <DataGridTextColumn Header="通信中" Binding="{Binding OnlineStatus}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </StackPanel>
+</Window>
